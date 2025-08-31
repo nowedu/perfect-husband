@@ -1,0 +1,95 @@
+{
+  "app": {
+    "title": "Perfekter Ehemann",
+    "subtitle": "Sei der beste Partner, der du sein kannst"
+  },
+  "auth": {
+    "enterPin": "PIN eingeben",
+    "wrongPin": "Falscher PIN",
+    "unlock": "Entsperren"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "cycle": "Zyklus",
+    "gifts": "Geschenke",
+    "dates": "Wichtige Termine",
+    "settings": "Einstellungen"
+  },
+  "cycle": {
+    "title": "Menstruationszyklus",
+    "currentPhase": "Aktuelle Phase",
+    "nextPeriod": "Nächste Periode",
+    "pmsWarning": "PMS-Warnung",
+    "daysUntil": "Tage bis",
+    "addDate": "Zyklusdatum hinzufügen",
+    "lastPeriod": "Letzte Periode",
+    "averageCycle": "Durchschnittlicher Zyklus",
+    "days": "Tage",
+    "phase": {
+      "menstrual": "Menstruation",
+      "follicular": "Follikelphase",
+      "ovulation": "Eisprung",
+      "luteal": "Lutealphase"
+    }
+  },
+  "gifts": {
+    "title": "Geschenkideen",
+    "generateIdea": "Neue Idee generieren",
+    "categories": "Kategorien",
+    "preferences": "Vorlieben",
+    "flowers": "Blumen",
+    "alcohol": "Alkohol",
+    "books": "Bücher",
+    "places": "Orte",
+    "clothes": "Kleidung",
+    "jewelry": "Schmuck",
+    "cosmetics": "Kosmetik",
+    "hobbies": "Hobbys",
+    "sports": "Sport",
+    "music": "Musik",
+    "movies": "Filme",
+    "food": "Essen",
+    "travel": "Reisen",
+    "technology": "Technologie",
+    "art": "Kunst"
+  },
+  "dates": {
+    "title": "Wichtige Termine",
+    "birthday": "Geburtstag",
+    "anniversary": "Jahrestag",
+    "firstKiss": "Erster Kuss",
+    "firstDance": "Erster Tanz",
+    "firstDate": "Erstes Date",
+    "addDate": "Datum hinzufügen",
+    "upcoming": "Bevorstehend"
+  },
+  "daily": {
+    "title": "Täglicher Vorschlag",
+    "rate": "Bewerte diesen Vorschlag",
+    "good": "Gut",
+    "bad": "Schlecht",
+    "newSuggestion": "Neuen Vorschlag erhalten"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "language": "Sprache",
+    "theme": "Design",
+    "light": "Hell",
+    "dark": "Dunkel",
+    "colorblind": "Farbenblind-freundlich",
+    "changePin": "PIN ändern",
+    "currentPin": "Aktueller PIN",
+    "newPin": "Neuer PIN",
+    "confirmPin": "PIN bestätigen",
+    "save": "Speichern"
+  },
+  "common": {
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "add": "Hinzufügen",
+    "loading": "Laden...",
+    "error": "Fehler aufgetreten"
+  }
+}

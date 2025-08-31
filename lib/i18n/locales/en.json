@@ -1,0 +1,100 @@
+{
+  "app": {
+    "title": "Perfect Husband",
+    "subtitle": "Be the best partner you can be"
+  },
+  "auth": {
+    "enterPin": "Enter PIN",
+    "wrongPin": "Wrong PIN",
+    "unlock": "Unlock"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "cycle": "Cycle",
+    "gifts": "Gifts",
+    "dates": "Important Dates",
+    "settings": "Settings"
+  },
+  "cycle": {
+    "title": "Menstrual Cycle",
+    "currentPhase": "Current Phase",
+    "nextPeriod": "Next Period",
+    "pmsWarning": "PMS Alert",
+    "daysUntil": "days until",
+    "addDate": "Add Cycle Date",
+    "lastPeriod": "Last Period",
+    "averageCycle": "Average Cycle",
+    "days": "days",
+    "phase": {
+      "menstrual": "Menstrual",
+      "follicular": "Early Phase", 
+      "ovulation": "Ovulation",
+      "luteal": "Luteal"
+    },
+    "mood": {
+      "menstrual": "May need extra care",
+      "pms": "PMS - be extra gentle",
+      "good": "Good mood period"
+    }
+  },
+  "gifts": {
+    "title": "Gift Ideas",
+    "generateIdea": "Generate New Idea",
+    "categories": "Categories",
+    "preferences": "Preferences",
+    "flowers": "Flowers",
+    "alcohol": "Alcohol",
+    "books": "Books",
+    "places": "Places",
+    "clothes": "Clothes",
+    "jewelry": "Jewelry",
+    "cosmetics": "Cosmetics",
+    "hobbies": "Hobbies",
+    "sports": "Sports",
+    "music": "Music",
+    "movies": "Movies",
+    "food": "Food",
+    "travel": "Travel",
+    "technology": "Technology",
+    "art": "Art"
+  },
+  "dates": {
+    "title": "Important Dates",
+    "birthday": "Birthday",
+    "anniversary": "Anniversary",
+    "firstKiss": "First Kiss",
+    "firstDance": "First Dance",
+    "firstDate": "First Date",
+    "addDate": "Add Date",
+    "upcoming": "Upcoming"
+  },
+  "daily": {
+    "title": "Daily Suggestion",
+    "rate": "Rate this suggestion",
+    "good": "Good",
+    "bad": "Bad",
+    "newSuggestion": "Get New Suggestion"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "colorblind": "Colorblind Friendly",
+    "changePin": "Change PIN",
+    "currentPin": "Current PIN",
+    "newPin": "New PIN",
+    "confirmPin": "Confirm PIN",
+    "save": "Save"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "add": "Add",
+    "loading": "Loading...",
+    "error": "Error occurred"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "app": {
+    "title": "Esposo Perfecto",
+    "subtitle": "Sé el mejor compañero que puedas ser"
+  },
+  "auth": {
+    "enterPin": "Ingresa PIN",
+    "wrongPin": "PIN incorrecto",
+    "unlock": "Desbloquear"
+  },
+  "navigation": {
+    "dashboard": "Panel",
+    "cycle": "Ciclo",
+    "gifts": "Regalos",
+    "dates": "Fechas Importantes",
+    "settings": "Configuración"
+  },
+  "cycle": {
+    "title": "Ciclo Menstrual",
+    "currentPhase": "Fase Actual",
+    "nextPeriod": "Próximo Período",
+    "pmsWarning": "Alerta SPM",
+    "daysUntil": "días hasta",
+    "addDate": "Agregar Fecha del Ciclo",
+    "lastPeriod": "Último Período",
+    "averageCycle": "Ciclo Promedio",
+    "days": "días",
+    "phase": {
+      "menstrual": "Menstrual",
+      "follicular": "Folicular",
+      "ovulation": "Ovulación",
+      "luteal": "Lútea"
+    }
+  },
+  "gifts": {
+    "title": "Ideas de Regalos",
+    "generateIdea": "Generar Nueva Idea",
+    "categories": "Categorías",
+    "preferences": "Preferencias",
+    "flowers": "Flores",
+    "alcohol": "Alcohol",
+    "books": "Libros",
+    "places": "Lugares",
+    "clothes": "Ropa",
+    "jewelry": "Joyería",
+    "cosmetics": "Cosméticos",
+    "hobbies": "Pasatiempos",
+    "sports": "Deportes",
+    "music": "Música",
+    "movies": "Películas",
+    "food": "Comida",
+    "travel": "Viajes",
+    "technology": "Tecnología",
+    "art": "Arte"
+  },
+  "dates": {
+    "title": "Fechas Importantes",
+    "birthday": "Cumpleaños",
+    "anniversary": "Aniversario",
+    "firstKiss": "Primer Beso",
+    "firstDance": "Primer Baile",
+    "firstDate": "Primera Cita",
+    "addDate": "Agregar Fecha",
+    "upcoming": "Próximas"
+  },
+  "daily": {
+    "title": "Sugerencia Diaria",
+    "rate": "Califica esta sugerencia",
+    "good": "Buena",
+    "bad": "Mala",
+    "newSuggestion": "Obtener Nueva Sugerencia"
+  },
+  "settings": {
+    "title": "Configuración",
+    "language": "Idioma",
+    "theme": "Tema",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "colorblind": "Amigable para Daltónicos",
+    "changePin": "Cambiar PIN",
+    "currentPin": "PIN Actual",
+    "newPin": "Nuevo PIN",
+    "confirmPin": "Confirmar PIN",
+    "save": "Guardar"
+  },
+  "common": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "add": "Agregar",
+    "loading": "Cargando...",
+    "error": "Ocurrió un error"
+  }
+}

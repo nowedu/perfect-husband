@@ -1,0 +1,121 @@
+{
+  "app": {
+    "title": "Idealny Mąż",
+    "subtitle": "Bądź najlepszym partnerem, jakim możesz być"
+  },
+  "auth": {
+    "enterPin": "Wprowadź PIN",
+    "wrongPin": "Nieprawidłowy PIN",
+    "unlock": "Odblokuj"
+  },
+  "navigation": {
+    "dashboard": "Panel główny",
+    "cycle": "Cykl",
+    "gifts": "Prezenty",
+    "dates": "Ważne daty",
+    "settings": "Ustawienia"
+  },
+  "cycle": {
+    "title": "Cykl miesiączkowy",
+    "currentPhase": "Aktualna faza",
+    "nextPeriod": "Następna miesiączka",
+    "pmsWarning": "Alert PMS",
+    "daysUntil": "dni do",
+    "addDate": "Dodaj datę cyklu",
+    "lastPeriod": "Ostatnia miesiączka",
+    "averageCycle": "Średni cykl",
+    "days": "dni",
+    "phase": {
+      "menstrual": "Miesiączkowa",
+      "follicular": "Wczesna faza",
+      "ovulation": "Owulacja",
+      "luteal": "Lutealna"
+    },
+    "mood": {
+      "menstrual": "Może potrzebować więcej troski",
+      "pms": "PMS - bądź szczególnie delikatny",
+      "good": "Dobry okres nastroju"
+    },
+    "suggestions": {
+      "title": "Sugestie wsparcia",
+      "next": "Następne",
+      "rate": "Oceń pomocność"
+    }
+  },
+  "gifts": {
+    "title": "Pomysły na prezenty",
+    "generateIdea": "Wygeneruj nowy pomysł",
+    "categories": "Kategorie",
+    "preferences": "Preferencje",
+    "flowers": "Kwiaty",
+    "alcohol": "Alkohol",
+    "books": "Książki",
+    "places": "Miejsca",
+    "clothes": "Ubrania",
+    "jewelry": "Biżuteria",
+    "cosmetics": "Kosmetyki",
+    "hobbies": "Hobby",
+    "sports": "Sport",
+    "music": "Muzyka",
+    "movies": "Filmy",
+    "food": "Jedzenie",
+    "travel": "Podróże",
+    "technology": "Technologia",
+    "art": "Sztuka"
+  },
+  "dates": {
+    "title": "Ważne daty",
+    "birthday": "Urodziny",
+    "anniversary": "Rocznica",
+    "firstKiss": "Pierwszy pocałunek",
+    "firstDance": "Pierwszy taniec",
+    "firstDate": "Pierwsza randka",
+    "addDate": "Dodaj datę",
+    "upcoming": "Nadchodzące"
+  },
+  "daily": {
+    "title": "Codzienna sugestia",
+    "rate": "Oceń tę sugestię",
+    "good": "Dobra",
+    "bad": "Zła",
+    "newSuggestion": "Pobierz nową sugestię",
+    "viewAll": "Zobacz wszystkie sugestie",
+    "suggestions": {
+      "title": "Wszystkie sugestie",
+      "search": "Szukaj sugestii...",
+      "filter": {
+        "all": "Wszystkie",
+        "topRated": "Najwyżej ocenione",
+        "unrated": "Nieocenione",
+        "lowRated": "Słabo ocenione",
+        "favorites": "Ulubione"
+      },
+      "noResults": "Brak wyników",
+      "favorite": "Dodaj do ulubionych",
+      "unfavorite": "Usuń z ulubionych"
+    }
+  },
+  "settings": {
+    "title": "Ustawienia",
+    "language": "Język",
+    "theme": "Motyw",
+    "light": "Jasny",
+    "dark": "Ciemny",
+    "colorblind": "Przyjazny dla daltonistów",
+    "changePin": "Zmień PIN",
+    "currentPin": "Aktualny PIN",
+    "newPin": "Nowy PIN",
+    "confirmPin": "Potwierdź PIN",
+    "save": "Zapisz"
+  },
+  "common": {
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "edit": "Edytuj",
+    "delete": "Usuń",
+    "add": "Dodaj",
+    "loading": "Ładowanie...",
+    "error": "Wystąpił błąd",
+    "back": "Wróć"
+  }
+}

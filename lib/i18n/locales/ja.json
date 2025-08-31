@@ -1,0 +1,95 @@
+{
+  "app": {
+    "title": "完璧な夫",
+    "subtitle": "最高のパートナーになろう"
+  },
+  "auth": {
+    "enterPin": "PINを入力",
+    "wrongPin": "間違ったPIN",
+    "unlock": "ロック解除"
+  },
+  "navigation": {
+    "dashboard": "ダッシュボード",
+    "cycle": "サイクル",
+    "gifts": "ギフト",
+    "dates": "重要な日付",
+    "settings": "設定"
+  },
+  "cycle": {
+    "title": "月経周期",
+    "currentPhase": "現在のフェーズ",
+    "nextPeriod": "次の生理",
+    "pmsWarning": "PMSアラート",
+    "daysUntil": "日まで",
+    "addDate": "サイクル日付を追加",
+    "lastPeriod": "最後の生理",
+    "averageCycle": "平均サイクル",
+    "days": "日",
+    "phase": {
+      "menstrual": "月経期",
+      "follicular": "卵胞期",
+      "ovulation": "排卵期",
+      "luteal": "黄体期"
+    }
+  },
+  "gifts": {
+    "title": "ギフトアイデア",
+    "generateIdea": "新しいアイデアを生成",
+    "categories": "カテゴリー",
+    "preferences": "好み",
+    "flowers": "花",
+    "alcohol": "アルコール",
+    "books": "本",
+    "places": "場所",
+    "clothes": "服",
+    "jewelry": "ジュエリー",
+    "cosmetics": "化粧品",
+    "hobbies": "趣味",
+    "sports": "スポーツ",
+    "music": "音楽",
+    "movies": "映画",
+    "food": "食べ物",
+    "travel": "旅行",
+    "technology": "テクノロジー",
+    "art": "アート"
+  },
+  "dates": {
+    "title": "重要な日付",
+    "birthday": "誕生日",
+    "anniversary": "記念日",
+    "firstKiss": "初キス",
+    "firstDance": "初ダンス",
+    "firstDate": "初デート",
+    "addDate": "日付を追加",
+    "upcoming": "今後の予定"
+  },
+  "daily": {
+    "title": "毎日の提案",
+    "rate": "この提案を評価",
+    "good": "良い",
+    "bad": "悪い",
+    "newSuggestion": "新しい提案を取得"
+  },
+  "settings": {
+    "title": "設定",
+    "language": "言語",
+    "theme": "テーマ",
+    "light": "ライト",
+    "dark": "ダーク",
+    "colorblind": "色覚異常対応",
+    "changePin": "PIN変更",
+    "currentPin": "現在のPIN",
+    "newPin": "新しいPIN",
+    "confirmPin": "PIN確認",
+    "save": "保存"
+  },
+  "common": {
+    "save": "保存",
+    "cancel": "キャンセル",
+    "edit": "編集",
+    "delete": "削除",
+    "add": "追加",
+    "loading": "読み込み中...",
+    "error": "エラーが発生しました"
+  }
+}

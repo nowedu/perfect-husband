@@ -1,0 +1,95 @@
+{
+  "app": {
+    "title": "完美丈夫",
+    "subtitle": "成為最好的伴侶"
+  },
+  "auth": {
+    "enterPin": "輸入PIN碼",
+    "wrongPin": "PIN碼錯誤",
+    "unlock": "解鎖"
+  },
+  "navigation": {
+    "dashboard": "儀表板",
+    "cycle": "週期",
+    "gifts": "禮物",
+    "dates": "重要日期",
+    "settings": "設定"
+  },
+  "cycle": {
+    "title": "月經週期",
+    "currentPhase": "目前階段",
+    "nextPeriod": "下次月經",
+    "pmsWarning": "經前症候群提醒",
+    "daysUntil": "天後",
+    "addDate": "新增週期日期",
+    "lastPeriod": "上次月經",
+    "averageCycle": "平均週期",
+    "days": "天",
+    "phase": {
+      "menstrual": "月經期",
+      "follicular": "濾泡期",
+      "ovulation": "排卵期",
+      "luteal": "黃體期"
+    }
+  },
+  "gifts": {
+    "title": "禮物創意",
+    "generateIdea": "產生新創意",
+    "categories": "類別",
+    "preferences": "偏好",
+    "flowers": "鮮花",
+    "alcohol": "酒類",
+    "books": "書籍",
+    "places": "地點",
+    "clothes": "服裝",
+    "jewelry": "珠寶",
+    "cosmetics": "化妝品",
+    "hobbies": "嗜好",
+    "sports": "運動",
+    "music": "音樂",
+    "movies": "電影",
+    "food": "美食",
+    "travel": "旅行",
+    "technology": "科技",
+    "art": "藝術"
+  },
+  "dates": {
+    "title": "重要日期",
+    "birthday": "生日",
+    "anniversary": "紀念日",
+    "firstKiss": "初吻",
+    "firstDance": "初舞",
+    "firstDate": "初次約會",
+    "addDate": "新增日期",
+    "upcoming": "即將到來"
+  },
+  "daily": {
+    "title": "每日建議",
+    "rate": "評價此建議",
+    "good": "好",
+    "bad": "不好",
+    "newSuggestion": "取得新建議"
+  },
+  "settings": {
+    "title": "設定",
+    "language": "語言",
+    "theme": "主題",
+    "light": "淺色",
+    "dark": "深色",
+    "colorblind": "色盲友善",
+    "changePin": "更改PIN碼",
+    "currentPin": "目前PIN碼",
+    "newPin": "新PIN碼",
+    "confirmPin": "確認PIN碼",
+    "save": "儲存"
+  },
+  "common": {
+    "save": "儲存",
+    "cancel": "取消",
+    "edit": "編輯",
+    "delete": "刪除",
+    "add": "新增",
+    "loading": "載入中...",
+    "error": "發生錯誤"
+  }
+}

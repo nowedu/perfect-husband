@@ -1,0 +1,95 @@
+{
+  "app": {
+    "title": "完美丈夫",
+    "subtitle": "成为最好的伴侣"
+  },
+  "auth": {
+    "enterPin": "输入PIN码",
+    "wrongPin": "PIN码错误",
+    "unlock": "解锁"
+  },
+  "navigation": {
+    "dashboard": "仪表板",
+    "cycle": "周期",
+    "gifts": "礼物",
+    "dates": "重要日期",
+    "settings": "设置"
+  },
+  "cycle": {
+    "title": "月经周期",
+    "currentPhase": "当前阶段",
+    "nextPeriod": "下次月经",
+    "pmsWarning": "经前综合症提醒",
+    "daysUntil": "天后",
+    "addDate": "添加周期日期",
+    "lastPeriod": "上次月经",
+    "averageCycle": "平均周期",
+    "days": "天",
+    "phase": {
+      "menstrual": "月经期",
+      "follicular": "卵泡期",
+      "ovulation": "排卵期",
+      "luteal": "黄体期"
+    }
+  },
+  "gifts": {
+    "title": "礼物创意",
+    "generateIdea": "生成新创意",
+    "categories": "类别",
+    "preferences": "偏好",
+    "flowers": "鲜花",
+    "alcohol": "酒类",
+    "books": "书籍",
+    "places": "地点",
+    "clothes": "服装",
+    "jewelry": "珠宝",
+    "cosmetics": "化妆品",
+    "hobbies": "爱好",
+    "sports": "运动",
+    "music": "音乐",
+    "movies": "电影",
+    "food": "美食",
+    "travel": "旅行",
+    "technology": "科技",
+    "art": "艺术"
+  },
+  "dates": {
+    "title": "重要日期",
+    "birthday": "生日",
+    "anniversary": "纪念日",
+    "firstKiss": "初吻",
+    "firstDance": "初舞",
+    "firstDate": "初次约会",
+    "addDate": "添加日期",
+    "upcoming": "即将到来"
+  },
+  "daily": {
+    "title": "每日建议",
+    "rate": "评价此建议",
+    "good": "好",
+    "bad": "不好",
+    "newSuggestion": "获取新建议"
+  },
+  "settings": {
+    "title": "设置",
+    "language": "语言",
+    "theme": "主题",
+    "light": "浅色",
+    "dark": "深色",
+    "colorblind": "色盲友好",
+    "changePin": "更改PIN码",
+    "currentPin": "当前PIN码",
+    "newPin": "新PIN码",
+    "confirmPin": "确认PIN码",
+    "save": "保存"
+  },
+  "common": {
+    "save": "保存",
+    "cancel": "取消",
+    "edit": "编辑",
+    "delete": "删除",
+    "add": "添加",
+    "loading": "加载中...",
+    "error": "发生错误"
+  }
+}
