@@ -1671,3 +1671,23 @@ Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
  GET /icon-192x192.png 404 in 250ms
  GET /favicon.ico?favicon.bf3c9292.ico 200 in 322ms
  GET /favicon.ico?favicon.bf3c9292.ico 200 in 364ms
+ ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET / 200 in 338ms
+ ✓ Compiled in 624ms
+ ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET / 200 in 710ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 388ms
+ GET /favicon.ico 200 in 337ms
+ ⚠ Unsupported metadata themeColor is configured in metadata export in /_not-found. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ⚠ Unsupported metadata viewport is configured in metadata export in /_not-found. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 416ms
+ GET /icon-192x192.png 404 in 277ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 329ms

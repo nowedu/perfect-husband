@@ -6,9 +6,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import { Calendar, Sparkles, Smile, Meh, Frown, Star, Eye } from 'lucide-react';
+import { Calendar, Sparkles, Smile, Meh, Frown, Star, Eye, Clock } from 'lucide-react';
 import { AppData, DailySuggestion } from '@/hooks/storage/useAppData';
-import { differenceInDays } from 'date-fns';
+import { differenceInDays, format } from 'date-fns';
 import { SuggestionsManager } from './SuggestionsManager';
 
 interface DashboardProps {
@@ -38,6 +38,19 @@ export function Dashboard({ data, onUpdateData }: DashboardProps) {
     if (isMenstrualTime) return t('cycle.mood.menstrual');
     if (isPMSTime) return t('cycle.mood.pms');
     return t('cycle.mood.good');
+  };
+
+  const getUpcomingDates = () => {
+    const upcoming = data.importantDates
+      .map(date => ({
+        ...date,
+        daysUntil: differenceInDays(new Date(date.date), today)
+      }))
+      .filter(date => date.daysUntil >= 0)
+      .sort((a, b) => a.daysUntil - b.daysUntil)
+      .slice(0, 3);
+    
+    return upcoming;
   };
 
   const getSuggestionsForLanguage = (language: string) => {
@@ -141,6 +154,8 @@ export function Dashboard({ data, onUpdateData }: DashboardProps) {
   const todaysSuggestion = data.dailySuggestions.find(s => s.date === today.toISOString().split('T')[0]) || 
                           data.dailySuggestions[0];
 
+  const upcomingDates = getUpcomingDates();
+
   const StarRating = ({ suggestion }: { suggestion: DailySuggestion }) => {
     const [hoveredRating, setHoveredRating] = useState(0);
 
@@ -213,6 +228,37 @@ export function Dashboard({ data, onUpdateData }: DashboardProps) {
         </CardContent>
       </Card>
 
+      {/* Upcoming Important Dates */}
+      {upcomingDates.length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Clock className="w-5 h-5 text-blue-500" />
+              {t('dates.upcoming')}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {upcomingDates.map((date) => (
+                <div key={date.id} className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
+                  <div>
+                    <p className="font-medium text-sm">{date.name}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {format(new Date(date.date), 'dd.MM.yyyy')}
+                    </p>
+                  </div>
+                  <Badge variant="outline" className="text-xs">
+                    {date.daysUntil === 0 ? 'Dziś' : 
+                     date.daysUntil === 1 ? 'Jutro' : 
+                     `Za ${date.daysUntil} dni`}
+                  </Badge>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       {/* Daily Suggestion */}
       <Card>
         <CardHeader>
@@ -261,7 +307,7 @@ export function Dashboard({ data, onUpdateData }: DashboardProps) {
               className="flex items-center gap-2"
             >
               <Eye className="w-4 h-4" />
-              {t('daily.viewAll')}
+              Wszystkie
             </Button>
           </div>
         </CardContent>
