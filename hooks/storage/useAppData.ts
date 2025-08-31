@@ -25,6 +25,14 @@ export interface GiftPreferences {
   art: boolean;
 }
 
+export interface PartnerNote {
+  id: string;
+  title: string;
+  content: string;
+  dateAdded: string;
+  category?: 'wish' | 'need' | 'like' | 'dislike' | 'other';
+}
+
 export interface ImportantDate {
   id: string;
   name: string;
@@ -58,6 +66,7 @@ export interface AppSettings {
 export interface AppData {
   cycle: CycleData;
   giftPreferences: GiftPreferences;
+  partnerNotes: PartnerNote[];
   importantDates: ImportantDate[];
   dailySuggestions: DailySuggestion[];
   cycleSuggestions: CycleSuggestion[];
@@ -88,6 +97,7 @@ const defaultData: AppData = {
     technology: false,
     art: false
   },
+  partnerNotes: [],
   importantDates: [],
   dailySuggestions: [],
   cycleSuggestions: [],

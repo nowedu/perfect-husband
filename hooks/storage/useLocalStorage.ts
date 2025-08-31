@@ -1,38 +1,56 @@
 import { useState, useEffect } from 'react';
 import CryptoJS from 'crypto-js';
 
-const ENCRYPTION_KEY = 'perfect-husband-secret-key-2024';
+const SECRET_KEY = 'perfect-husband-secret-2024';
 
-export function useLocalStorage<T>(key: string, initialValue: T) {
-  const [storedValue, setStoredValue] = useState<T>(() => {
+export function useLocalStorage<T>(key: string, defaultValue: T) {
+  const [value, setValue] = useState<T>(() => {
     if (typeof window === 'undefined') {
-      return initialValue;
+      return defaultValue;
     }
+
     try {
       const item = window.localStorage.getItem(key);
-      if (item) {
-        const decrypted = CryptoJS.AES.decrypt(item, ENCRYPTION_KEY).toString(CryptoJS.enc.Utf8);
-        return decrypted ? JSON.parse(decrypted) : initialValue;
+      if (!item) {
+        return defaultValue;
       }
-      return initialValue;
+
+      // Decrypt the data
+      const bytes = CryptoJS.AES.decrypt(item, SECRET_KEY);
+      const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
+      
+      if (!decryptedData) {
+        return defaultValue;
+      }
+
+      const parsedData = JSON.parse(decryptedData);
+      
+      // Migration: Add partnerNotes if it doesn't exist
+      if (parsedData && typeof parsedData === 'object' && !parsedData.partnerNotes) {
+        parsedData.partnerNotes = [];
+      }
+      
+      return parsedData;
     } catch (error) {
-      console.error(`Error reading localStorage key "${key}":`, error);
-      return initialValue;
+      console.error('Error reading from localStorage:', error);
+      return defaultValue;
     }
   });
 
-  const setValue = (value: T | ((val: T) => T)) => {
+  const setStoredValue = (newValue: T | ((val: T) => T)) => {
     try {
-      const valueToStore = value instanceof Function ? value(storedValue) : value;
-      setStoredValue(valueToStore);
+      const valueToStore = newValue instanceof Function ? newValue(value) : newValue;
+      setValue(valueToStore);
+
       if (typeof window !== 'undefined') {
-        const encrypted = CryptoJS.AES.encrypt(JSON.stringify(valueToStore), ENCRYPTION_KEY).toString();
+        // Encrypt the data before storing
+        const encrypted = CryptoJS.AES.encrypt(JSON.stringify(valueToStore), SECRET_KEY).toString();
         window.localStorage.setItem(key, encrypted);
       }
     } catch (error) {
-      console.error(`Error setting localStorage key "${key}":`, error);
+      console.error('Error saving to localStorage:', error);
     }
   };
 
-  return [storedValue, setValue] as const;
+  return [value, setStoredValue] as const;
 }

@@ -4,10 +4,14 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Sparkles, Heart, Save } from 'lucide-react';
-import { AppData } from '@/hooks/storage/useAppData';
+import { Sparkles, Heart, Save, Plus, Edit, Trash2, BookOpen } from 'lucide-react';
+import { AppData, PartnerNote } from '@/hooks/storage/useAppData';
+import { format } from 'date-fns';
 
 interface GiftManagerProps {
   data: AppData;
@@ -17,6 +21,10 @@ interface GiftManagerProps {
 export function GiftManager({ data, onUpdateData }: GiftManagerProps) {
   const { t } = useTranslation();
   const [generatedIdea, setGeneratedIdea] = useState<string>('');
+  const [showAddNote, setShowAddNote] = useState(false);
+  const [editingNote, setEditingNote] = useState<PartnerNote | null>(null);
+  const [noteTitle, setNoteTitle] = useState('');
+  const [noteContent, setNoteContent] = useState('');
 
   const generateGiftIdea = () => {
     const selectedPreferences = Object.entries(data.giftPreferences)
@@ -139,6 +147,71 @@ export function GiftManager({ data, onUpdateData }: GiftManagerProps) {
     onUpdateData(updatedData);
   };
 
+  const addNote = () => {
+    if (!noteTitle.trim() || !noteContent.trim()) return;
+
+    const newNote: PartnerNote = {
+      id: `note-${Date.now()}-${Math.random()}`,
+      title: noteTitle.trim(),
+      content: noteContent.trim(),
+      dateAdded: new Date().toISOString(),
+      category: 'wish'
+    };
+
+    const updatedData = {
+      ...data,
+      partnerNotes: [newNote, ...data.partnerNotes]
+    };
+
+    onUpdateData(updatedData);
+    setNoteTitle('');
+    setNoteContent('');
+    setShowAddNote(false);
+  };
+
+  const updateNote = () => {
+    if (!editingNote || !noteTitle.trim() || !noteContent.trim()) return;
+
+    const updatedNotes = data.partnerNotes.map(note =>
+      note.id === editingNote.id
+        ? { ...note, title: noteTitle.trim(), content: noteContent.trim() }
+        : note
+    );
+
+    const updatedData = {
+      ...data,
+      partnerNotes: updatedNotes
+    };
+
+    onUpdateData(updatedData);
+    setEditingNote(null);
+    setNoteTitle('');
+    setNoteContent('');
+  };
+
+  const deleteNote = (noteId: string) => {
+    const updatedNotes = data.partnerNotes.filter(note => note.id !== noteId);
+    const updatedData = {
+      ...data,
+      partnerNotes: updatedNotes
+    };
+    onUpdateData(updatedData);
+  };
+
+  const startEditNote = (note: PartnerNote) => {
+    setEditingNote(note);
+    setNoteTitle(note.title);
+    setNoteContent(note.content);
+    setShowAddNote(true);
+  };
+
+  const cancelNoteEdit = () => {
+    setEditingNote(null);
+    setNoteTitle('');
+    setNoteContent('');
+    setShowAddNote(false);
+  };
+
   const selectedCount = Object.values(data.giftPreferences).filter(Boolean).length;
 
   return (
@@ -146,6 +219,99 @@ export function GiftManager({ data, onUpdateData }: GiftManagerProps) {
       <div className="text-center py-4">
         <h1 className="text-2xl font-bold text-foreground">{t('gifts.title')}</h1>
       </div>
+
+      {/* Partner Notes */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <BookOpen className="w-5 h-5 text-blue-500" />
+            Notatnik potrzeb partnerki
+          </CardTitle>
+          <CardDescription>
+            Zapisuj rzeczy, które wspomina, że chce lub potrzebuje
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {!showAddNote && (
+            <Button onClick={() => setShowAddNote(true)} className="w-full flex items-center gap-2">
+              <Plus className="w-4 h-4" />
+              Dodaj nową notatkę
+            </Button>
+          )}
+
+          {showAddNote && (
+            <div className="space-y-4 p-4 bg-muted/50 rounded-lg">
+              <div className="space-y-2">
+                <Label htmlFor="note-title">Tytuł notatki</Label>
+                <Input
+                  id="note-title"
+                  value={noteTitle}
+                  onChange={(e) => setNoteTitle(e.target.value)}
+                  placeholder="np. Chce nową torebkę"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="note-content">Treść notatki</Label>
+                <Textarea
+                  id="note-content"
+                  value={noteContent}
+                  onChange={(e) => setNoteContent(e.target.value)}
+                  placeholder="Szczegóły, preferencje, kolory, marki..."
+                  rows={3}
+                />
+              </div>
+              <div className="flex gap-2">
+                <Button 
+                  onClick={editingNote ? updateNote : addNote}
+                  disabled={!noteTitle.trim() || !noteContent.trim()}
+                  className="flex-1"
+                >
+                  <Save className="w-4 h-4 mr-2" />
+                  {editingNote ? 'Zaktualizuj' : 'Zapisz'}
+                </Button>
+                <Button variant="outline" onClick={cancelNoteEdit} className="flex-1">
+                  Anuluj
+                </Button>
+              </div>
+            </div>
+          )}
+
+          {data.partnerNotes.length > 0 && (
+            <div className="space-y-3">
+              <h4 className="font-medium text-sm">Zapisane notatki ({data.partnerNotes.length})</h4>
+              {data.partnerNotes.map((note) => (
+                <div key={note.id} className="p-4 bg-muted/30 rounded-lg space-y-2">
+                  <div className="flex justify-between items-start">
+                    <h5 className="font-medium text-sm">{note.title}</h5>
+                    <div className="flex gap-1">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => startEditNote(note)}
+                        className="p-1 h-auto"
+                      >
+                        <Edit className="w-4 h-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => deleteNote(note.id)}
+                        className="p-1 h-auto text-red-500 hover:text-red-700"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground">{note.content}</p>
+                  <p className="text-xs text-muted-foreground">
+                    Dodano: {format(new Date(note.dateAdded), 'dd.MM.yyyy HH:mm')}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       {/* AI Gift Suggestion */}
       <Card>
@@ -216,9 +382,10 @@ export function GiftManager({ data, onUpdateData }: GiftManagerProps) {
         <CardContent>
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li>• Im więcej preferencji wybierzesz, tym lepsze będą sugestie AI</li>
-            <li>• Zwróć uwagę na jej aktualny nastrój i ostatnie rozmowy</li>
+            <li>• Sprawdzaj regularnie swoje notatki przed ważnymi okazjami</li>
             <li>• Małe, przemyślane gesty często znaczą więcej niż drogie prezenty</li>
-            <li>• Zwracaj uwagę na rzeczy, które wspomina, że chce lub potrzebuje</li>
+            <li>• Zwracaj uwagę na rzeczy, które wspomina w rozmowach</li>
+            <li>• Zapisuj szczegóły jak kolory, marki, rozmiary</li>
           </ul>
         </CardContent>
       </Card>

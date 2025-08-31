@@ -1711,3 +1711,34 @@ Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
  GET /favicon.ico?favicon.bf3c9292.ico 200 in 356ms
  GET /icon-192x192.png 404 in 269ms
  GET /favicon.ico?favicon.bf3c9292.ico 200 in 314ms
+ ✓ Compiled in 349ms
+ ✓ Compiled in 603ms
+ ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET / 200 in 495ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 321ms
+ GET /favicon.ico 200 in 316ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 289ms
+ ⚠ Unsupported metadata themeColor is configured in metadata export in /_not-found. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ⚠ Unsupported metadata viewport is configured in metadata export in /_not-found. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /icon-192x192.png 404 in 178ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 265ms
+ ✓ Compiled in 446ms
+ ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET / 200 in 427ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 298ms
+ GET /favicon.ico 200 in 282ms
+ ⚠ Unsupported metadata themeColor is configured in metadata export in /_not-found. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ⚠ Unsupported metadata viewport is configured in metadata export in /_not-found. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /icon-192x192.png 404 in 157ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 261ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 262ms
