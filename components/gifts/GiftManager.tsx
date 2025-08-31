@@ -4,11 +4,10 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Switch } from '@/components/ui/switch';
-import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
-import { Gift, Sparkles, Save, Heart } from 'lucide-react';
-import { AppData, GiftPreferences } from '@/hooks/storage/useAppData';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Sparkles, Heart, Save } from 'lucide-react';
+import { AppData } from '@/hooks/storage/useAppData';
 
 interface GiftManagerProps {
   data: AppData;
@@ -17,112 +16,157 @@ interface GiftManagerProps {
 
 export function GiftManager({ data, onUpdateData }: GiftManagerProps) {
   const { t } = useTranslation();
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [currentIdea, setCurrentIdea] = useState('');
+  const [generatedIdea, setGeneratedIdea] = useState<string>('');
 
-  const preferenceKeys = Object.keys(data.giftPreferences) as (keyof GiftPreferences)[];
+  const generateGiftIdea = () => {
+    const selectedPreferences = Object.entries(data.giftPreferences)
+      .filter(([_, selected]) => selected)
+      .map(([key, _]) => key);
 
-  const updatePreference = (key: keyof GiftPreferences, value: boolean) => {
+    if (selectedPreferences.length === 0) {
+      setGeneratedIdea(t('gifts.noPreferences'));
+      return;
+    }
+
+    const giftIdeas = {
+      flowers: [
+        'Bukiet jej ulubionych kwiatów',
+        'Pojedyncza róża z miłą notką',
+        'Kwiaty doniczkowe, które będą długo cieszyć',
+        'Bukiet sezonowych kwiatów'
+      ],
+      alcohol: [
+        'Butelka jej ulubionego wina',
+        'Zestaw do degustacji whisky',
+        'Koktajl przygotowany specjalnie dla niej',
+        'Szampan na szczególną okazję'
+      ],
+      books: [
+        'Książka jej ulubionego autora',
+        'Bestseller z jej ulubionego gatunku',
+        'Pięknie wydana klasyka literatury',
+        'Audiobook do słuchania w podróży'
+      ],
+      places: [
+        'Bilet do teatru lub na koncert',
+        'Weekend w spa',
+        'Wycieczka do nowego miasta',
+        'Kolacja w jej ulubionej restauracji'
+      ],
+      clothes: [
+        'Elegancka bluzka w jej stylu',
+        'Przytulny sweter na zimę',
+        'Piękna sukienka na specjalne okazje',
+        'Wygodne ubrania do domu'
+      ],
+      jewelry: [
+        'Delikatny naszyjnik',
+        'Eleganckie kolczyki',
+        'Bransoletka z grawerem',
+        'Pierścionek z jej ulubionym kamieniem'
+      ],
+      cosmetics: [
+        'Zestaw kosmetyków jej ulubionej marki',
+        'Luksusowy krem do twarzy',
+        'Zestaw do pielęgnacji paznokci',
+        'Perfumy o jej ulubionym zapachu'
+      ],
+      hobbies: [
+        'Akcesoria do jej hobby',
+        'Kurs online w jej dziedzinie zainteresowań',
+        'Narzędzia do jej ulubionej aktywności',
+        'Książka o jej pasji'
+      ],
+      sports: [
+        'Nowy strój sportowy',
+        'Akcesoria do jej ulubionego sportu',
+        'Karnet na siłownię lub zajęcia fitness',
+        'Butelka na wodę z personalizacją'
+      ],
+      music: [
+        'Płyta jej ulubionego wykonawcy',
+        'Słuchawki wysokiej jakości',
+        'Bilet na koncert',
+        'Instrument muzyczny, o którym marzy'
+      ],
+      movies: [
+        'Kolekcja filmów jej ulubionego gatunku',
+        'Bilet do kina na premierę',
+        'Domowy wieczór filmowy z przekąskami',
+        'Gadżety z jej ulubionego filmu'
+      ],
+      food: [
+        'Zestaw egzotycznych przypraw',
+        'Kurs gotowania',
+        'Kolacja w nowej restauracji',
+        'Zestaw do pieczenia ciast'
+      ],
+      travel: [
+        'Przewodnik po miejscu, które chce odwiedzić',
+        'Stylowa walizka podróżna',
+        'Weekend w nowym miejscu',
+        'Zestaw podróżny z kosmetykami'
+      ],
+      technology: [
+        'Nowy gadżet, który ułatwi jej życie',
+        'Akcesoria do telefonu',
+        'Inteligentny zegarek',
+        'Głośnik bezprzewodowy'
+      ],
+      art: [
+        'Obraz jej ulubionego artysty',
+        'Zestaw do malowania',
+        'Bilet do galerii sztuki',
+        'Piękny album o sztuce'
+      ]
+    };
+
+    const randomPreference = selectedPreferences[Math.floor(Math.random() * selectedPreferences.length)];
+    const ideas = giftIdeas[randomPreference as keyof typeof giftIdeas];
+    const randomIdea = ideas[Math.floor(Math.random() * ideas.length)];
+    
+    setGeneratedIdea(randomIdea);
+  };
+
+  const updatePreference = (preference: keyof typeof data.giftPreferences, checked: boolean) => {
     const updatedData = {
       ...data,
       giftPreferences: {
         ...data.giftPreferences,
-        [key]: value
+        [preference]: checked
       }
     };
     onUpdateData(updatedData);
   };
 
-  const savePreferences = () => {
-    // Preferences are already saved in real-time, this is just for UI feedback
-    // In a real app, you might want to batch updates
-  };
-
-  const generateGiftIdea = async () => {
-    setIsGenerating(true);
-    
-    // Get active preferences
-    const activePreferences = preferenceKeys.filter(key => data.giftPreferences[key]);
-    
-    // Simulate AI API call
-    const giftIdeas = {
-      flowers: [
-        "A bouquet of her favorite seasonal flowers",
-        "A potted orchid that will bloom for months",
-        "Dried flower arrangement for her workspace"
-      ],
-      books: [
-        "The latest bestseller in her favorite genre",
-        "A beautiful coffee table book about her interests",
-        "A personalized book with both your names"
-      ],
-      jewelry: [
-        "A delicate necklace with her birthstone",
-        "Matching earrings in her favorite metal",
-        "A charm bracelet with meaningful symbols"
-      ],
-      food: [
-        "Homemade dinner featuring her favorite cuisine",
-        "A selection of artisanal chocolates",
-        "Cooking class for both of you to enjoy together"
-      ],
-      travel: [
-        "Weekend getaway to a nearby city she's mentioned",
-        "Surprise picnic in a beautiful location",
-        "Plan a day trip to explore somewhere new together"
-      ]
-    };
-
-    setTimeout(() => {
-      let idea = "Consider what would make her smile today - maybe her favorite coffee or a heartfelt note.";
-      
-      if (activePreferences.length > 0) {
-        const randomPreference = activePreferences[Math.floor(Math.random() * activePreferences.length)];
-        const ideas = giftIdeas[randomPreference as keyof typeof giftIdeas];
-        if (ideas) {
-          idea = ideas[Math.floor(Math.random() * ideas.length)];
-        }
-      }
-      
-      setCurrentIdea(idea);
-      setIsGenerating(false);
-    }, 1500);
-  };
-
-  const activePreferencesCount = preferenceKeys.filter(key => data.giftPreferences[key]).length;
+  const selectedCount = Object.values(data.giftPreferences).filter(Boolean).length;
 
   return (
     <div className="space-y-6 pb-20">
       <div className="text-center py-4">
-        <h1 className="text-2xl font-bold text-gray-900">{t('gifts.title')}</h1>
+        <h1 className="text-2xl font-bold text-foreground">{t('gifts.title')}</h1>
       </div>
 
-      {/* Current Gift Idea */}
+      {/* AI Gift Suggestion */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-purple-500" />
-            AI Gift Suggestion
+            Generator pomysłów AI
           </CardTitle>
+          <CardDescription>
+            Wygeneruj spersonalizowany pomysł na prezent na podstawie jej preferencji
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          {currentIdea ? (
-            <div className="p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg">
-              <p className="text-gray-800 leading-relaxed">{currentIdea}</p>
+          {generatedIdea && (
+            <div className="p-4 bg-muted/50 rounded-lg">
+              <p className="font-medium text-sm">{generatedIdea}</p>
             </div>
-          ) : (
-            <p className="text-gray-600 text-center py-4">
-              Generate a personalized gift idea based on her preferences
-            </p>
           )}
-          
-          <Button 
-            onClick={generateGiftIdea} 
-            disabled={isGenerating}
-            className="w-full flex items-center gap-2"
-          >
-            <Gift className="w-4 h-4" />
-            {isGenerating ? t('common.loading') : t('gifts.generateIdea')}
+          <Button onClick={generateGiftIdea} className="w-full flex items-center gap-2">
+            <Sparkles className="w-4 h-4" />
+            {t('gifts.generateIdea')}
           </Button>
         </CardContent>
       </Card>
@@ -135,54 +179,47 @@ export function GiftManager({ data, onUpdateData }: GiftManagerProps) {
             {t('gifts.preferences')}
           </CardTitle>
           <CardDescription>
-            Select her interests to get better gift suggestions
+            Wybierz jej zainteresowania, aby otrzymać lepsze sugestie prezentów
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-sm text-gray-600">{t('gifts.categories')}</span>
-            <Badge variant="secondary">
-              {activePreferencesCount} selected
-            </Badge>
+          <div className="flex justify-between items-center">
+            <span className="text-sm font-medium">{t('gifts.categories')}</span>
+            <Badge variant="outline">{selectedCount} wybranych</Badge>
           </div>
-
+          
           <div className="grid grid-cols-2 gap-4">
-            {preferenceKeys.map((key) => (
+            {Object.entries(data.giftPreferences).map(([key, checked]) => (
               <div key={key} className="flex items-center space-x-2">
-                <Switch
+                <Checkbox
                   id={key}
-                  checked={data.giftPreferences[key]}
-                  onCheckedChange={(checked) => updatePreference(key, checked)}
+                  checked={checked}
+                  onCheckedChange={(checked) => updatePreference(key as keyof typeof data.giftPreferences, !!checked)}
                 />
-                <Label htmlFor={key} className="text-sm font-medium">
+                <label
+                  htmlFor={key}
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
                   {t(`gifts.${key}`)}
-                </Label>
+                </label>
               </div>
             ))}
           </div>
-
-          <Button 
-            onClick={savePreferences}
-            className="w-full flex items-center gap-2 mt-6"
-          >
-            <Save className="w-4 h-4" />
-            {t('common.save')}
-          </Button>
         </CardContent>
       </Card>
 
       {/* Tips */}
       <Card>
         <CardHeader>
-          <CardTitle>Gift Tips</CardTitle>
+          <CardTitle>Wskazówki dotyczące prezentów</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-3 text-sm text-gray-600">
-            <p>• The more preferences you select, the better the AI suggestions will be</p>
-            <p>• Consider her current mood and recent conversations</p>
-            <p>• Small, thoughtful gestures often mean more than expensive gifts</p>
-            <p>• Pay attention to things she mentions wanting or needing</p>
-          </div>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            <li>• Im więcej preferencji wybierzesz, tym lepsze będą sugestie AI</li>
+            <li>• Zwróć uwagę na jej aktualny nastrój i ostatnie rozmowy</li>
+            <li>• Małe, przemyślane gesty często znaczą więcej niż drogie prezenty</li>
+            <li>• Zwracaj uwagę na rzeczy, które wspomina, że chce lub potrzebuje</li>
+          </ul>
         </CardContent>
       </Card>
     </div>

@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { Calendar, Plus, Save, Smile, Meh, Frown, Star, ChevronRight } from 'lucide-react';
+import { Calendar, Plus, Save, Smile, Meh, Frown, Star, ChevronRight, Edit } from 'lucide-react';
 import { AppData, CycleSuggestion } from '@/hooks/storage/useAppData';
 import { format, differenceInDays, addDays } from 'date-fns';
 
@@ -21,6 +21,8 @@ export function CycleTracker({ data, onUpdateData }: CycleTrackerProps) {
   const { t } = useTranslation();
   const [newPeriodDate, setNewPeriodDate] = useState('');
   const [currentSuggestionIndex, setCurrentSuggestionIndex] = useState(0);
+  const [editingCycleLength, setEditingCycleLength] = useState(false);
+  const [newCycleLength, setNewCycleLength] = useState(data.cycle.averageCycle.toString());
 
   const today = new Date();
   const nextPeriod = new Date(data.cycle.nextPeriodDate);
@@ -123,6 +125,30 @@ export function CycleTracker({ data, onUpdateData }: CycleTrackerProps) {
     };
 
     onUpdateData(updatedData);
+  };
+
+  const updateCycleLength = () => {
+    const newLength = parseInt(newCycleLength);
+    if (newLength >= 21 && newLength <= 35) {
+      // Recalculate next period date based on new cycle length
+      const lastPeriod = data.cycle.lastPeriods.length > 0 
+        ? new Date(data.cycle.lastPeriods[0])
+        : new Date(Date.now() - (newLength * 24 * 60 * 60 * 1000));
+      
+      const nextPeriodDate = addDays(lastPeriod, newLength);
+
+      const updatedData = {
+        ...data,
+        cycle: {
+          ...data.cycle,
+          averageCycle: newLength,
+          nextPeriodDate: nextPeriodDate.toISOString().split('T')[0]
+        }
+      };
+
+      onUpdateData(updatedData);
+      setEditingCycleLength(false);
+    }
   };
 
   const addPeriodDate = () => {
@@ -228,7 +254,17 @@ export function CycleTracker({ data, onUpdateData }: CycleTrackerProps) {
 
           <div className="grid grid-cols-2 gap-4 text-center">
             <div>
-              <p className="text-2xl font-bold text-pink-600">{data.cycle.averageCycle}</p>
+              <div className="flex items-center justify-center gap-2">
+                <p className="text-2xl font-bold text-pink-600">{data.cycle.averageCycle}</p>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setEditingCycleLength(true)}
+                  className="p-1"
+                >
+                  <Edit className="w-4 h-4" />
+                </Button>
+              </div>
               <p className="text-sm text-muted-foreground">{t('cycle.averageCycle')} ({t('cycle.days')})</p>
             </div>
             <div>
@@ -238,6 +274,47 @@ export function CycleTracker({ data, onUpdateData }: CycleTrackerProps) {
           </div>
         </CardContent>
       </Card>
+
+      {/* Edit Cycle Length */}
+      {editingCycleLength && (
+        <Card>
+          <CardHeader>
+            <CardTitle>Edytuj długość cyklu</CardTitle>
+            <CardDescription>
+              Wprowadź długość cyklu (21-35 dni)
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="cycle-length">Długość cyklu (dni)</Label>
+              <Input
+                id="cycle-length"
+                type="number"
+                min="21"
+                max="35"
+                value={newCycleLength}
+                onChange={(e) => setNewCycleLength(e.target.value)}
+              />
+            </div>
+            <div className="flex gap-2">
+              <Button onClick={updateCycleLength} className="flex-1">
+                <Save className="w-4 h-4 mr-2" />
+                Zapisz
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={() => {
+                  setEditingCycleLength(false);
+                  setNewCycleLength(data.cycle.averageCycle.toString());
+                }}
+                className="flex-1"
+              >
+                Anuluj
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Cycle Support Suggestions */}
       <Card>
